@@ -1,0 +1,4 @@
+LOCAL_OBJECTS = \
+tractionDisplacementFvPatchVectorField.o\
+propagatingPressureWaveFvPatchScalarField.o\
+poroElastic.o

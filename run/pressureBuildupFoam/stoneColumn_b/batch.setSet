@@ -1,0 +1,10 @@
+cellSet solidZones new boxToCell ( 43.5  0  -1 ) ( 45.24 0.5  0)
+cellSet solidZones add boxToCell (132.24 0  -1 ) (133.98 0.5  0)
+faceSet stoneColumn new  boxToFace  ( 43.4 0 -1)  (43.6 0.5 0)
+//faceSet stoneColumn add  boxToFace  ( 45.20 0 -1)  (45.30 0.5 0)
+//faceSet stoneColumn add  boxToFace  (132 0  -1 ) (132.3 0.5  0)
+//faceSet stoneColumn add  boxToFace  (133 0  -1 ) (134.5 0.5  0)
+
+
+
+quit

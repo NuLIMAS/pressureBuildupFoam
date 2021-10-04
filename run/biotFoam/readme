@@ -1,0 +1,12 @@
+propagatingPorePressureWaveOverPlateOnSeabed:
+biotFoam solution.
+Propagating pressure wave on top of soil domain with free traction for soil skeleton.
+See video and descrition here:
+http://www.youtube.com/watch?v=9pZdtnjf07I
+
+suddenSqueezeOnPlateOnSeabed:
+Pore pressure on seabed corresponding to hydrostatic with 1 m of water on top.
+Zero pore pressure gradient and displacement on sides and bottom.
+Sudden downwards pointing force on plate on seabed.
+See video and descrition here:
+http://www.youtube.com/watch?v=slgnGkWIzFo

@@ -1,0 +1,39 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | foam-extend: Open Source CFD                    |
+|  \\    /   O peration     | Version:     4.1                                |
+|   \\  /    A nd           | Web:         http://www.foam-extend.org         |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    location    "system";
+    object      rheologyProperties;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+planeStress     no;
+
+rheology
+{
+    type                    multiMaterial;
+
+    laws
+    (
+        soil
+        {
+            type            poroElastic;
+            rho             rho [1 -3 0 0 0 0 0] -1; // not used
+            E               E [1 -1 -2 0 0 0 0] 2.667e7;
+            nu              nu [0 0 0 0 0 0 0] 0.3333;
+            n               n [0 0 0 0 0 0 0] 0.3;
+            k               k [0 1 -1 0 0 0 0] 1e-3;
+        }
+    );
+}
+
+
+// ************************************************************************* //

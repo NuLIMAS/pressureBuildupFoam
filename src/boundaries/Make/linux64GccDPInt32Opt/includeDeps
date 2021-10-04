@@ -1,0 +1,3 @@
+include tractionDisplacement/tractionDisplacementFvPatchVectorField.dep
+include propagatingPressureWave/propagatingPressureWaveFvPatchScalarField.dep
+include poroElastic/poroElastic.dep

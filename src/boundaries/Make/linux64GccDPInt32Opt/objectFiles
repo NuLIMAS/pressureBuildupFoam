@@ -1,0 +1,4 @@
+OBJECTS = \
+$(OBJECTS_DIR)/tractionDisplacementFvPatchVectorField.o\
+$(OBJECTS_DIR)/propagatingPressureWaveFvPatchScalarField.o\
+$(OBJECTS_DIR)/poroElastic.o

@@ -1,0 +1,4 @@
+SOURCE = \
+tractionDisplacement/tractionDisplacementFvPatchVectorField.C\
+propagatingPressureWave/propagatingPressureWaveFvPatchScalarField.C\
+poroElastic/poroElastic.C
