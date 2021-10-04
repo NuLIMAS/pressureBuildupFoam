@@ -23,12 +23,12 @@ solidInterface* solidInterfacePtr(nullptr);
         // check grad scheme
         if
         (
-            word(mesh.schemesDict().gradSchemes().lookup("grad(D)"))
+            word(mesh.schemesDict().gradSchemes().lookup("grad(U)"))
          != "leastSquaresSolidInterface"
         )
         {
             Warning
-                << "The grad(D) gradScheme should be "
+                << "The grad(U) gradScheme should be "
                 << "leastSquaresSolidInterface for the solidInterface "
                 << " procedure to be correct"
                 << endl;

@@ -1,4 +1,6 @@
 DEPENDENCIES = \
 tractionDisplacement/tractionDisplacementFvPatchVectorField.dep\
 propagatingPressureWave/propagatingPressureWaveFvPatchScalarField.dep\
+oscillatingRotatingValue/oscillatingRotatingValueFvPatchVectorField.dep\
+pressureFixedValue/pressureFixedValueFvPatchScalarField.dep\
 poroElastic/poroElastic.dep

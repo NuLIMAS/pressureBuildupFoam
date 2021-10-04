@@ -93,40 +93,40 @@ int main(int argc, char *argv[])
 
         label iCorr = 0;
         scalar pResidual = 1.0e10;
-        scalar DResidual = 1.0e10;
+        scalar UResidual = 1.0e10;
         scalar residual = 1.0e10;
 
         do
         {
-                       D.storePrevIter();
+                       U.storePrevIter();
                        p.storePrevIter();
 
                        fvScalarMatrix pEqn
 			(
-				fvm::ddt(Dp1,p)       == fvm::laplacian(Dp2, p) - fvc::div(fvc::ddt(Dp3,D))
+				fvm::ddt(Dp1,p)       == fvm::laplacian(Dp2, p) - fvc::div(fvc::ddt(Dp3,U))
 			);
                        pEqn.relax();
                        pResidual=pEqn.solve().initialResidual();
                        p.relax();
 
-                       fvVectorMatrix DEqn
+                       fvVectorMatrix UEqn
 			(
-			        fvm::laplacian(2*mu + lambda, D, "laplacian(DD,D)") + divSigmaExp   == fvc::grad(p)
+			        fvm::laplacian(2*mu + lambda, U, "laplacian(DD,U)") + divSigmaExp   == fvc::grad(p)
 			);
 
                        if (solidInterfaceCorr)
                        {
-                           solidInterfacePtr->correct(DEqn);
+                           solidInterfacePtr->correct(UEqn);
                        }
 
-			DResidual=DEqn.solve().initialResidual();
-                       D.relax();
+			UResidual=UEqn.solve().initialResidual();
+                       U.relax();
 
-			gradD = fvc::grad(D);
-			sigmaD = mu*twoSymm(gradD) + (lambda*I)*tr(gradD);
-			divSigmaExp = fvc::div(sigmaD - (2*mu + lambda)*gradD,"div(sigmaD)");
+			gradU = fvc::grad(U);
+			sigmaU = mu*twoSymm(gradU) + (lambda*I)*tr(gradU);
+			divSigmaExp = fvc::div(sigmaU - (2*mu + lambda)*gradU,"div(sigmaU)");
 
-                       residual = max(pResidual,DResidual);
+                       residual = max(pResidual,UResidual);
 
         } while
         (

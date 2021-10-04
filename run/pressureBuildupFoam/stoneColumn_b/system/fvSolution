@@ -17,7 +17,7 @@ FoamFile
 
 solvers
 {
-    D
+    U
     {
         solver          GAMG;
         tolerance       1e-06;
@@ -46,24 +46,14 @@ solvers
  
     }
     
-    pE
-    {
-        solver          GAMG;
-        tolerance       1e-06;
-        relTol          0;
-        smoother        GaussSeidel;
-        cacheAgglomeration true;
-        nCellsInCoarsestLevel 20;
-        agglomerator    faceAreaPair;
-        mergeLevels     1;
-    }
+  
 }
 
 stressAnalysis
 {
     compactNormalStress yes;
     nCorrectors     1000;
-    D               1e-06;
+    U               1e-06;
     aitkenRelaxation false;
     
 }
@@ -71,8 +61,8 @@ stressAnalysis
 solidMechanics
 {
     nCorrectors           1000;
-    D                     1e-06;
     U                     1e-06;
+    V                     1e-06;
     //divSigmaExp           standard;
     divSigmaExp           surface;
     //divSigmaExp           decompose;
@@ -88,7 +78,7 @@ relaxationFactors
 {
     fields
     {
-        D    0.2;
+        U    0.2;
     }
 
     equations

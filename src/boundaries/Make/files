@@ -1,5 +1,7 @@
 tractionDisplacement/tractionDisplacementFvPatchVectorField.C
 propagatingPressureWave/propagatingPressureWaveFvPatchScalarField.C
+oscillatingRotatingValue/oscillatingRotatingValueFvPatchVectorField.C
+pressureFixedValue/pressureFixedValueFvPatchScalarField.C
 poroElastic/poroElastic.C
 
 LIB = $(FOAM_USER_LIBBIN)/libSoilFvPatchFields

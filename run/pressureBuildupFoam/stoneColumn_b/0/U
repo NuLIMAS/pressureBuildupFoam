@@ -15,7 +15,7 @@ FoamFile
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-dimensions      [0 1 -1 0 0 0 0];
+dimensions      [0 1 0 0 0 0 0];
 
 internalField   uniform (0 0 0);
 
@@ -23,7 +23,9 @@ boundaryField
 {
     seaBed
     {
-        type            fixedValue;
+        type            tractionDisplacement;
+        traction        uniform (0 0 0);
+        pressure        uniform 0;
         value           uniform (0 0 0);
     }
     frontBack

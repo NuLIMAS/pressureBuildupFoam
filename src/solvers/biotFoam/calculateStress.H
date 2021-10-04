@@ -11,7 +11,7 @@ if (runTime.outputTime())
             IOobject::NO_READ,
             IOobject::AUTO_WRITE
         ),
-        sigmaD - I*p
+        sigmaU - I*p
     );
 
     volScalarField sigmaEq
@@ -30,11 +30,11 @@ if (runTime.outputTime())
     Info<< "Max sigmaEq = " << max(sigmaEq).value()
         << endl;
 
-    volVectorField U
+    volVectorField V
     (
         IOobject
         (
-            "U",
+            "V",
             runTime.timeName(),
             mesh,
             IOobject::NO_READ,
@@ -43,7 +43,7 @@ if (runTime.outputTime())
         -(k/gamma)*fvc::grad(p)
     );
     
-tauXZ = sigmaD.component(symmTensor::XZ);
+tauXZ = sigmaU.component(symmTensor::XZ);
     
 runTime.write();  
 

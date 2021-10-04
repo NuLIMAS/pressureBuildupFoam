@@ -158,7 +158,7 @@ void tractionDisplacementFvPatchVectorField::updateCoeffs()
     vectorField n = patch().nf(); //Unit normal
 
     const fvPatchField<symmTensor>& sigmaD =
-        patch().lookupPatchField<volSymmTensorField, symmTensor>("sigmaD");
+        patch().lookupPatchField<volSymmTensorField, symmTensor>("sigmaU");
 
 //    const fvPatchField<scalar>& p =
 //    patch().lookupPatchField<volScalarField, scalar>("p");

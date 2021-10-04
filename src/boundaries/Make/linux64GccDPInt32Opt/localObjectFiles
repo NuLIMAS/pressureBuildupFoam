@@ -1,4 +1,6 @@
 LOCAL_OBJECTS = \
 tractionDisplacementFvPatchVectorField.o\
 propagatingPressureWaveFvPatchScalarField.o\
+oscillatingRotatingValueFvPatchVectorField.o\
+pressureFixedValueFvPatchScalarField.o\
 poroElastic.o

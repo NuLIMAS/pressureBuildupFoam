@@ -1,8 +1,8 @@
 /*--------------------------------*- C++ -*----------------------------------*\
 | =========                 |                                                 |
-| \\      /  F ield         | foam-extend: Open Source CFD                    |
-|  \\    /   O peration     | Version:     4.1                                |
-|   \\  /    A nd           | Web:         http://www.foam-extend.org         |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  1.7.1                                 |
+|   \\  /    A nd           | Web:      www.OpenFOAM.com                      |
 |    \\/     M anipulation  |                                                 |
 \*---------------------------------------------------------------------------*/
 FoamFile
@@ -10,12 +10,11 @@ FoamFile
     version     2.0;
     format      ascii;
     class       volVectorField;
-    location    "0";
     object      U;
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-dimensions      [0 1 -1 0 0 0 0];
+dimensions      [0 1 0 0 0 0 0];
 
 internalField   uniform (0 0 0);
 
@@ -23,24 +22,30 @@ boundaryField
 {
     seaBed
     {
-        type            fixedValue;
+        type            tractionDisplacement;
+        traction        uniform (0 0 0);
+        pressure        uniform 0;
         value           uniform (0 0 0);
     }
-    frontBack
+    sides
     {
-        type            empty;
+        type            cyclic;   
     }
     soilDomainBottom
     {
         type            fixedValue;
         value           uniform (0 0 0);
     }
-    sides
+     frontBack
     {
-        type            cyclic;
+        type  		 empty;
+    }
+    
+    stoneColumn
+    {
+        type            fixedValue;
         value           uniform (0 0 0);
     }
 }
-
 
 // ************************************************************************* //

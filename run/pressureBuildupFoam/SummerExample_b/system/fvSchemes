@@ -30,16 +30,16 @@ gradSchemes
 divSchemes
 {
     default         none;
-    div(sigmaD)     Gauss linear;
-    div(ddt(Dp2,D)) Gauss linear corrected;
-    div(ddt(Dp3,D)) Gauss linear corrected;
+    div(sigmaU)     Gauss linear;
+    div(ddt(Dp2,U)) Gauss linear corrected;
+    div(ddt(Dp3,U)) Gauss linear corrected;
 
 }
 
 laplacianSchemes
 {
     default         none;
-    laplacian(DD,D) Gauss linear corrected;
+    laplacian(DD,U) Gauss linear corrected;
     laplacian(Dp,p) Gauss harmonic corrected;
     laplacian(Dp2,p) Gauss harmonic corrected;
     laplacian(Dp3,p) Gauss harmonic corrected;
@@ -59,7 +59,7 @@ snGradSchemes
 fluxRequired
 {
     default         no;
-    D               yes;
+    U               yes;
     p               no;
 }
 

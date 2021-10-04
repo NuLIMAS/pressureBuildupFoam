@@ -1,0 +1,103 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  1.7.1                                 |
+|   \\  /    A nd           | Web:      www.OpenFOAM.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    location    "system";
+    object      fvSolution;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+solvers
+{
+    U
+    {
+        solver          GAMG;
+        tolerance       1e-06;
+        relTol          0;
+        smoother        GaussSeidel;
+        cacheAgglomeration true;
+        nCellsInCoarsestLevel 20;
+        agglomerator    faceAreaPair;
+        mergeLevels     1;
+        minIter         2;
+ 
+
+    }
+
+    p
+    {
+        solver          GAMG;
+        tolerance       1e-06;
+        relTol          0;
+        smoother        GaussSeidel;
+        cacheAgglomeration true;
+        nCellsInCoarsestLevel 20;
+        agglomerator    faceAreaPair;
+        mergeLevels     1;
+        minIter         2;
+ 
+    }
+    
+    pE
+    {
+        solver          GAMG;
+        tolerance       1e-06;
+        relTol          0;
+        smoother        GaussSeidel;
+        cacheAgglomeration true;
+        nCellsInCoarsestLevel 20;
+        agglomerator    faceAreaPair;
+        mergeLevels     1;
+    }
+}
+
+stressAnalysis
+{
+    compactNormalStress yes;
+    nCorrectors     500;
+    U               1e-05;
+    aitkenRelaxation false;
+    
+}
+
+solidMechanics
+{
+    nCorrectors           1000;
+    U                     1e-06;
+    V                     1e-06;
+    //divSigmaExp           standard;
+    divSigmaExp           surface;
+    //divSigmaExp           decompose;
+    //divSigmaExp           laplacian;
+    historyPatch          right;
+    solidInterfaceMethod  smallStrainCorrected;
+    predictor             yes;
+    infoFrequency         100;
+    aitkenRelaxation      no;
+}
+
+relaxationFactors
+{
+    fields
+    {
+        
+        U    0.1;
+        //p    0.2;
+    }
+    equations
+    {
+       // p    0.75;
+       p    0.1;
+    }
+}
+
+
+// ************************************************************************* //

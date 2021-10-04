@@ -1,0 +1,137 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  1.7.1                                 |
+|   \\  /    A nd           | Web:      www.OpenFOAM.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       volVectorField;
+    object      U;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+dimensions      [0 1 0 0 0 0 0];
+
+internalField   uniform (0 0 0);
+
+boundaryField
+{
+    rockerTop
+    {
+        type             oscillatingRotatingValue;
+        amplitude        (0 0.0112 0);
+        frequency         0.625;
+        origin            (0.45 0 0);
+
+    }
+    
+    seaBed
+    {
+        type                 solidContact;
+        master               yes;
+        contactActive        yes;
+        rigidMaster          no;
+        shadowPatch          rocker;
+
+        interpolationMethod  ggi;
+        //interpolationMethod  patchToPatch;
+        projectionAlgo       visible;
+        projectionDir        contactSphere;
+        //projectionDir        vector;
+        correctionFrequency   1;
+        normalContactModel     standardPenalty;
+        standardPenaltyNormalModelDict
+        {
+            relaxationFactor               0.01;
+            penaltyScale                   1;
+            returnScale                    1.5;
+            contactGapTol                  1e-7;
+            limitPenetration               no;
+            penetrationLimit               -0.03;
+            limitPressure                  no;
+            pressureLimit                  1e12;
+            correctMissedVertices          yes;
+            distanceMethod                 point;
+            //distanceMethod                 face;
+            oscillationCorrection          yes;
+            smoothingSteps                 1;
+            infoFrequency                  10;
+        }
+        frictionContactModel   frictionless;
+        //frictionContactModel   standardPenalty;
+        standardPenaltyFrictionModelDict
+        {
+            relaxationFactor               0.1;
+            penaltyScale                   1;
+            oscillationCorrection          yes;
+            smoothingSteps                 1;
+            infoFrequency                  10;
+
+            frictionLaw       coulomb;
+            frictionLawDict
+            {
+                frictionCoeff     0.1;
+            }
+        }
+
+        //value                uniform (0 0 0);
+    }
+
+    rocker
+    {
+        type             oscillatingRotatingValue;
+        amplitude        (0 0.0112 0);
+        frequency         0.625;
+        origin            (0.45 0 0);
+
+        //type                 solidContact;
+        //master               yes;
+        //contactActive        yes;
+        //rigidMaster          yes;
+        //shadowPatch          seaBed;
+    }
+    
+
+    
+    
+    
+      
+       
+    
+    left
+    {
+
+        type            tractionDisplacement;
+        traction        uniform (0 0 0);
+        pressure        uniform 0;
+        value           uniform (0 0 0);
+
+        
+    }
+    right
+    {
+
+        type            tractionDisplacement;
+        traction        uniform (0 0 0);
+        pressure        uniform 0;
+        value           uniform (0 0 0);
+
+        
+    }
+    soilDomainBottom
+    {
+        type            fixedValue;
+        value           uniform (0 0 0);
+    }
+     frontBack
+    {
+        type  		 empty;
+    }
+
+}
+
+// ************************************************************************* //

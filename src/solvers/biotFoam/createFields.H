@@ -1,9 +1,9 @@
-Info<< "Reading field D\n" << endl;
-volVectorField D
+Info<< "Reading field U\n" << endl;
+volVectorField U
 (
     IOobject
     (
-        "D",
+        "U",
         runTime.timeName(),
         mesh,
         IOobject::MUST_READ,
@@ -12,11 +12,11 @@ volVectorField D
     mesh
 );
 
-    volTensorField gradD
+    volTensorField gradU
     (
         IOobject
         (
-            "grad(D)",
+            "grad(U)",
             runTime.timeName(),
             mesh,
             IOobject::NO_READ,
@@ -26,11 +26,11 @@ volVectorField D
         dimensionedTensor("zero", dimless, tensor::zero)
     );
 
-    surfaceVectorField snGradD
+    surfaceVectorField snGradU
     (
         IOobject
         (
-            "snGrad(D)",
+            "snGrad(U)",
             runTime.timeName(),
             mesh,
             IOobject::NO_READ,
@@ -55,12 +55,12 @@ volScalarField p
     mesh
 );
 
-Info<< "Calculating stress field sigmaD\n" << endl;
-volSymmTensorField sigmaD
+Info<< "Calculating stress field sigmaU\n" << endl;
+volSymmTensorField sigmaU
 (
     IOobject
     (
-        "sigmaD",
+        "sigmaU",
         runTime.timeName(),
         mesh,
         IOobject::NO_READ,
@@ -71,7 +71,7 @@ volSymmTensorField sigmaD
 
 );
 
-constitutiveModel rheology(sigmaD, D);
+constitutiveModel rheology(sigmaU, U);
 volScalarField mu = rheology.mu();
 volScalarField lambda = rheology.lambda();
 surfaceScalarField muf = rheology.muf();
@@ -110,7 +110,7 @@ volVectorField divSigmaExp
         IOobject::NO_READ,
         IOobject::NO_WRITE
     ),
-    fvc::div(sigmaD)
+    fvc::div(sigmaU)
 );
 
 Info<< "Initializing tauXZ field\n" << endl;
@@ -124,9 +124,9 @@ volScalarField tauXZ
         IOobject::NO_READ,
         IOobject::AUTO_WRITE
     ),
-    sigmaD.component(symmTensor::XZ)
+    sigmaU.component(symmTensor::XZ)
 );
-q
+
 Info<< "Initializing nu field\n" << endl;
 volScalarField nu
 (
@@ -216,9 +216,9 @@ volScalarField Dp3
 
 if (compactNormalStress)
 {
-    divSigmaExp -= fvc::laplacian(2*mu + lambda, D, "laplacian(DD,D)");
+    divSigmaExp -= fvc::laplacian(2*mu + lambda, U, "laplacian(DD,U)");
 }
 else
 {
-    divSigmaExp -= fvc::div((2*mu + lambda)*fvc::grad(D), "div(sigmaD)");
+    divSigmaExp -= fvc::div((2*mu + lambda)*fvc::grad(U), "div(sigmaU)");
 }
