@@ -18,15 +18,15 @@ FoamFile
 
 
 
-K               K [ 1 -1 -2 0 0 0 0 ] 2e9;
+K              K [ 1 -1 -2 0 0 0 0 ] 2e9;
 
-Sr           	Sr [ 0 0 0 0 0 0 0 ] .975;
+Sr             Sr [ 0 0 0 0 0 0 0 ] .975;
 
-p0           	p0 [ 1 -1 -2 0 0 0 0 ] 2e5;
+p0             p0 [ 1 -1 -2 0 0 0 0 ] 2e5;
 
-gamma           gamma [ 1 -2 -2 0 0 0 0 ] 1e4;
+gamma          gamma [ 1 -2 -2 0 0 0 0 ] 1e4;
 
-planeStress   no;
+planeStress    no;
 
 
 

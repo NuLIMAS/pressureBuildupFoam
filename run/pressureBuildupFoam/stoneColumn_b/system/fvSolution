@@ -62,16 +62,15 @@ solvers
 stressAnalysis
 {
     compactNormalStress yes;
-    nCorrectors     1000;
-    D               1e-06;
+    nCorrectors     2500 ;
+    D               1e-05;
     aitkenRelaxation false;
     
 }
 
 solidMechanics
 {
-    nCorrectors           1000;
-    D                     1e-06;
+    nCorrectors           2500;
     U                     1e-06;
     //divSigmaExp           standard;
     divSigmaExp           surface;
@@ -88,12 +87,12 @@ relaxationFactors
 {
     fields
     {
-        D    0.2;
+        D    0.1;
     }
 
     equations
     {
-        p    0.5;
+        p    0.1;
     }
 }
 

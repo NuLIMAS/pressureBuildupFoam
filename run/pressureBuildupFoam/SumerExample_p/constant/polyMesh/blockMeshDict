@@ -41,36 +41,36 @@ boundary
 (
     seaBed
     {
-          type wall;
-          faces
-         (
-	  (4 5 6 7)	
-         );
+        type wall;
+        faces
+        (
+            (4 5 6 7)
+        );
     }
      
      frontBack
     {
-          type empty;
-          faces
-         (
-	  (3 7 6 2)
-          (0 1 5 4)	
-         );
+        type empty;
+        faces
+        (
+            (3 7 6 2)
+            (0 1 5 4)	
+        );
     }  
     
     soilDomainBottom
     {
-          type wall;
-          faces
-         (
-	  (0 3 2 1 )	
-         );
+        type wall;
+        faces
+        (
+            (0 3 2 1 )	
+        );
     } 
     
     sides
     {
-         type cyclic;    
-         faces
+        type cyclic;
+        faces
         (
             (0 4 7 3)
             (1 5 6 2)

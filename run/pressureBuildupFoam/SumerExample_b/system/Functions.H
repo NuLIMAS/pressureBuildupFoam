@@ -18,6 +18,14 @@ functions
 				end         (87 0 -1);
 				nPoints     100;
 			}
+			Profile2
+			{
+				type        uniform;
+				axis        z;
+				start       (84 0 0);
+				end         (84 0 -1);
+				nPoints     50;
+			}
 	
 		);
 		

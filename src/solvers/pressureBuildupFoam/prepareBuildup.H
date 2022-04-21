@@ -84,16 +84,12 @@ volScalarField beta
 
 
 const cellZone& cz1 = mesh.cellZones()["solidZones"];
-    forAll(cz1, czi)
-    {
-
-        alpha[cz1[czi]]  = 0.764;
-        beta[cz1[czi]]   = 0.28;
-        k0[cz1[czi]]     = 0.38434;
- 
-    }
-
-
+forAll(cz1, czi)
+{
+    //alpha[cz1[czi]]  = 0.764;
+    //beta[cz1[czi]]   = 0.28;
+    //k0[cz1[czi]]     = 0.38434;
+}
 
 
 alpha.correctBoundaryConditions();
@@ -167,13 +163,10 @@ volScalarField f
     
 f.correctBoundaryConditions();
 
-    forAll(cz1, czi)
-    {
-        f[cz1[czi]]  =0;
-    }
-
-
-
+forAll(cz1, czi)
+{
+    f[cz1[czi]]  =0;
+}
 
 
 //volScalarField cv("cv", (mu * k / gamma) * ((2-2*nu)/ ((1-2*nu)+(2-2*nu)*(n*mu/Kprime))));

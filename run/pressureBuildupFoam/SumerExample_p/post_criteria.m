@@ -1,16 +1,16 @@
 
 f1 = figure;
 firstax = axes (f1, 'FontSize', 16); 
-c1=load('postProcessing/sets/120/Profile2_liqueCriteria.xy' );
-c2=load('postProcessing/sets/240/Profile2_liqueCriteria.xy' );
-c3=load('postProcessing/sets/480/Profile2_liqueCriteria.xy' );
-c4=load('postProcessing/sets/900/Profile2_liqueCriteria.xy' );
+c1=load('postProcessing/Profiles/120/Profile1_pE_liqueCriteria.xy' );
+c2=load('postProcessing/Profiles/240/Profile1_pE_liqueCriteria.xy' );
+c3=load('postProcessing/Profiles/480/Profile1_pE_liqueCriteria.xy' );
+c4=load('postProcessing/Profiles/900/Profile1_pE_liqueCriteria.xy' );
 
-plot(c1(:,2), c1(:,1),'b','lineWidth',2)
+plot(c1(:,3), c1(:,1),'b','lineWidth',2)
 hold on
-plot(c2(:,2), c2(:,1),'r','lineWidth',2)
-plot(c3(:,2), c3(:,1),'g','lineWidth',2)
-plot(c4(:,2), c4(:,1),'m','lineWidth',2)
+plot(c2(:,3), c2(:,1),'r','lineWidth',2)
+plot(c3(:,3), c3(:,1),'g','lineWidth',2)
+plot(c4(:,3), c4(:,1),'m','lineWidth',2)
 
 d1=load('t2.csv');
 d2=load('t4.csv');
@@ -52,6 +52,6 @@ r = 2*o +3.2;
 
 
 %legend (secondax, [H1 H2], 'Numerical', 'Analytical', 'location', 'southeast');
-t=title({'Comparison of Numerical (-) and Analytical^1 (--) solution'} , 'Interpreter', 'tex')
-set(t,'fontsize',16)
+%t=title({'Comparison of Numerical (-) and Analytical^1 (--) solution'} , 'Interpreter', 'tex')
+%set(t,'fontsize',16)
 saveas(figure(1), 'pbysigma0_z2.png')

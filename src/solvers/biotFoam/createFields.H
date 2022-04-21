@@ -12,33 +12,33 @@ volVectorField D
     mesh
 );
 
-    volTensorField gradD
+volTensorField gradD
+(
+    IOobject
     (
-        IOobject
-        (
-            "grad(D)",
-            runTime.timeName(),
-            mesh,
-            IOobject::NO_READ,
-            IOobject::NO_WRITE
-        ),
+        "grad(D)",
+        runTime.timeName(),
         mesh,
-        dimensionedTensor("zero", dimless, tensor::zero)
-    );
+        IOobject::NO_READ,
+        IOobject::NO_WRITE
+    ),
+    mesh,
+    dimensionedTensor("zero", dimless, tensor::zero)
+);
 
-    surfaceVectorField snGradD
+surfaceVectorField snGradD
+(
+    IOobject
     (
-        IOobject
-        (
-            "snGrad(D)",
-            runTime.timeName(),
-            mesh,
-            IOobject::NO_READ,
-            IOobject::NO_WRITE
-        ),
+        "snGrad(D)",
+        runTime.timeName(),
         mesh,
-        dimensionedVector("zero", dimless, vector::zero)
-    );
+        IOobject::NO_READ,
+        IOobject::NO_WRITE
+    ),
+    mesh,
+    dimensionedVector("zero", dimless, vector::zero)
+);
 
 Info<< "Reading pore pressure field p\n" << endl;
 
@@ -126,7 +126,7 @@ volScalarField tauXZ
     ),
     sigmaD.component(symmTensor::XZ)
 );
-q
+
 Info<< "Initializing nu field\n" << endl;
 volScalarField nu
 (

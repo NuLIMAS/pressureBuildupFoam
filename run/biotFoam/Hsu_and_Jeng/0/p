@@ -22,25 +22,24 @@ boundaryField
 {
     seaBed
     {
-		type        propagatingPressureWave;
-		
-		#include "../constant/waveProperties"
+        type        propagatingPressureWave
+        #include    "../constant/waveProperties"
 
     }
  
     sides
     {
-        type            cyclic;   
+        type        cyclic;   
     }
     
     soilDomainBottom
     {
-        type            zeroGradient;
+        type        zeroGradient;
     }
     
     frontBack
     { 
-        type  		empty;
+        type  	    empty;
      }
 }
 

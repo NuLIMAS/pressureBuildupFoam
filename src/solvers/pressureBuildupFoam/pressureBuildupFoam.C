@@ -26,15 +26,11 @@ Application
     and calculate the onset of residual liquefaction 
 
 Description
-    Transient segregated finite-volume solver of the Biot consolidation equations 
-	for linear-elastic, small-strain deformation of a solid skeleton coupled with 
-    pore water flow and pressure governed by Darcy's law.
-
-    Simple linear elasticity structural analysis code.
-    Solves for the displacement vector field D and the pore water pressure p. 
-    Also generating the stress tensor field sigma.
-	
+    The solver in addition to biotFoam  solves an lapalacian equation  for the pore pressure
+    buildup. Also, the onset of residual liquefaction can be predicted.
+    	
 Author
+    R. Shanmugasundaram, Wikki GmbH
 
 
 \*---------------------------------------------------------------------------*/
@@ -65,7 +61,10 @@ int main(int argc, char *argv[])
                 
         fvScalarMatrix pEEqn
         (
-        fvm::ddt(pE) == fvm::laplacian(cv, pE) + f
+            fvm::ddt(pE) 
+            == 
+            fvm::laplacian(cv, pE) 
+            + f
         );
         pEEqn.solve();
 

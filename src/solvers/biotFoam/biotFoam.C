@@ -35,7 +35,7 @@ Description
     
 Author
     Johan Roenby, DHI Water & Environment
-
+    R. Shanmugasundaram, Wikki GmbH
 \*---------------------------------------------------------------------------*/
 
 #include "fvCFD.H"
@@ -98,35 +98,42 @@ int main(int argc, char *argv[])
 
         do
         {
-                       D.storePrevIter();
-                       p.storePrevIter();
+            D.storePrevIter();
+            p.storePrevIter();
 
-                       fvScalarMatrix pEqn
-			(
-				fvm::ddt(Dp1,p)       == fvm::laplacian(Dp2, p) - fvc::div(fvc::ddt(Dp3,D))
-			);
-                       pEqn.relax();
-                       pResidual=pEqn.solve().initialResidual();
-                       p.relax();
+            fvScalarMatrix pEqn
+            (
+	        fvm::ddt(Dp1,p)       
+		== 
+		fvm::laplacian(Dp2, p) 
+		- fvc::div(fvc::ddt(Dp3,D))
+			
+	    );
+            
+            pEqn.relax();
+            pResidual=pEqn.solve().initialResidual();
+            p.relax();
 
-                       fvVectorMatrix DEqn
-			(
-			        fvm::laplacian(2*mu + lambda, D, "laplacian(DD,D)") + divSigmaExp   == fvc::grad(p)
-			);
+            fvVectorMatrix DEqn
+	    (
+	        fvm::laplacian(2*mu + lambda, D, "laplacian(DD,D)") 
+	        + divSigmaExp   
+	        == 
+	        fvc::grad(p)
+		
+	    );
 
-                       if (solidInterfaceCorr)
-                       {
-                           solidInterfacePtr->correct(DEqn);
-                       }
+           if (solidInterfaceCorr)
+           {
+               solidInterfacePtr->correct(DEqn);
+           }
 
-			DResidual=DEqn.solve().initialResidual();
-                       D.relax();
-
-			gradD = fvc::grad(D);
-			sigmaD = mu*twoSymm(gradD) + (lambda*I)*tr(gradD);
-			divSigmaExp = fvc::div(sigmaD - (2*mu + lambda)*gradD,"div(sigmaD)");
-
-                       residual = max(pResidual,DResidual);
+	   DResidual=DEqn.solve().initialResidual();
+	   D.relax();
+	   gradD = fvc::grad(D);
+	   sigmaD = mu*twoSymm(gradD) + (lambda*I)*tr(gradD);
+	   divSigmaExp = fvc::div(sigmaD - (2*mu + lambda)*gradD,"div(sigmaD)");
+           residual = max(pResidual,DResidual);
 
         } while
         (
@@ -134,14 +141,6 @@ int main(int argc, char *argv[])
         );
 
         Info << "number of iterations " << iCorr << endl;
-
-        //if (predictor)
-        //{
-        //    V = fvc::ddt(U);
-        //    gradV = fvc::ddt(gradU);
-        //    snGradV = (snGradU - snGradU.oldTime())/runTime.deltaT();
-        //}
-
         #include "calculateStress.H"
 
         Info<< "ExecutionTime = " << runTime.elapsedCpuTime() << " s"
