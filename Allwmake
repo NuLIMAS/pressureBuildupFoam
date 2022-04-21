@@ -1,0 +1,18 @@
+#!/bin/bash
+cd ${0%/*} || exit 1    # run from this directory
+
+
+
+# Check if OpenFOAM/FOAM has been sourced
+if [[ -z "${WM_PROJECT}" ]]
+then
+    echo "Please source the OpenFOAM/FOAM bashrc first!"
+    exit 1
+fi
+
+# Compile solvers
+(cd src/solvers/biotFoam  && wmake)
+(cd src/solvers/pressureBuildupFoam  && wmake)
+
+# Compile boundaries
+(cd src/boundaries && wmake libso)

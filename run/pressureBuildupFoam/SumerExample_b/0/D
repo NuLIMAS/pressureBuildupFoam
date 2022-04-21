@@ -36,16 +36,11 @@ boundaryField
         type            fixedValue;
         value           uniform (0 0 0);
     }
-     frontBack
+    frontBack
     {
         type  		 empty;
     }
     
-    stoneColumn
-    {
-        type            fixedValue;
-        value           uniform (0 0 0);
-    }
 }
 
 // ************************************************************************* //
